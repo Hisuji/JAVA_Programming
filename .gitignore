@@ -1,7 +1,9 @@
-# Setting Files
-*.settings
-*.classpath
-*.project
+### Eclipse ###
+bin/
+.settings/
+.loadpath
+.classpath
+.project
 
 # Compiled class file
 *.class
