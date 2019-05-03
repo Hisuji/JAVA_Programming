@@ -9,7 +9,7 @@
   - 값을 잘못 입력한 경우 다음 판으로 넘어가지 않는다. (카운팅 X)
 - 게임은 총 3판으로 진행되고 모든 게임이 끝나면 오늘 날짜와 시간을 출력한다.
 <div style="text-align: center;">
-<img src="\Users\suji\github_project\JAVA_Programming\images\rockPaPerScissors_img.PNG" alt="가위바위보이미지" style="width: 60%; "/>
+<img src="https://user-images.githubusercontent.com/47530310/57128298-ec330280-6dcd-11e9-8f62-eeb40063a5f4.PNG" alt="가위바위보이미지" style="width:60%;"/>
 </div>
 ------
 
