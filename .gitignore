@@ -4,6 +4,7 @@ bin/
 .loadpath
 .classpath
 .project
+images/
 
 # Compiled class file
 *.class
