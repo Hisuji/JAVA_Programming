@@ -30,4 +30,16 @@
   - num1, num2, num3
 - userPlay() : 유저가 1부터 9까지의 중복되지 않은 숫자 3개를 콤마로 구분하여 입력해야 한다.
   - 정규표현식으로 유효성 체크 : String regExp = "^[1-9]+,[1-9]+,[1-9]$";
-<img src="https://user-images.githubusercontent.com/47530310/57343797-b4d2a600-717f-11e9-8770-b16074d44e39.png" alt="숫자야게구임실행이미지" width="50%">
+<img src="https://user-images.githubusercontent.com/47530310/57343797-b4d2a600-717f-11e9-8770-b16074d44e39.png" alt="숫자야구게임실행이미지" width="50%">
+
+3. ## 행멘 게임
+- 영어 단어 맞추기 게임으로 글자 수만큼 ‘□’ 도형이 출력된다.
+- 유저에게는 총 4번의 기회가 주어진다.
+  - 알파벳 이외의 값을 입력한 경우 기회는 차감되지 않는다.
+- prepare() : 영어단어가 입력된 파일을 읽어 들여 게임을 준비한다.
+- test() : 읽어 들인 파일에서 랜덤으로 영어 단어 하나를 선택해 문제를 낸다.
+  - wordsList.get(key); 
+- answer() : 유저가 입력한 알파벳이 영어 단어에 포함되어 있으면 해당 자리를 알려준다.
+  - 대/소문자 구분 없이 입력받을 수 있다. 
+  - buffer.replace(index, index + 1, alphabet); 
+<img src="https://user-images.githubusercontent.com/47530310/57595633-3449e600-7581-11e9-9909-bddd48b2a0ce.png" alt="행멘게임실행이미지" width="50%">
