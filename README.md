@@ -43,3 +43,7 @@
   - 대/소문자 구분 없이 입력받을 수 있다. 
   - buffer.replace(index, index + 1, alphabet); 
 <img src="https://user-images.githubusercontent.com/47530310/57595633-3449e600-7581-11e9-9909-bddd48b2a0ce.png" alt="행멘게임실행이미지" width="50%">
+
+4. ## Swing을 이용한 계산기
+- 사칙연산이 가능하다.
+- createCal() : 계산기 레이아웃을 구성한다.
