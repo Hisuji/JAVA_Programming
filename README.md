@@ -45,15 +45,16 @@
 <img src="https://user-images.githubusercontent.com/47530310/57595633-3449e600-7581-11e9-9909-bddd48b2a0ce.png" alt="행멘게임실행이미지" width="50%">
 
 4. ## Swing을 이용한 계산기
-- 사칙연산이 가능하다.
-- createCal() : 계산기 레이아웃을 구성한다.
-- 구현 기능
-  - 중위 표현식 > 후위 표현식 변경 완료
-  - 곱셈, 나눗셈 입력 시 소괄호 삽입
-  - 초기화  기능
-  - 연산자가 1개인 경우와  연산 우선순위가 서로 다른 계산식의 경우 연산 가능
-<img src="https://user-images.githubusercontent.com/47530310/58337877-b68bb180-7e81-11e9-86e1-2cea638d8315.PNG" alt="계산기실행이미지" width="50%">
+- 사칙연산이 가능한 계산기이며, 값은 소수점 두자리까지 표기된다.
+  - 소수점 첫째 자리가 0인 경우 소수점은 표기되지 않는다. [ DecimalFormat 이용 ]
+- createCal() : 계산기 레이아웃 구성
+- class InputAction : 계산기 버튼 클릭 시 연산 시작
+- isNumber() : 버튼값이 숫자인지 아닌지 확인
+- actionPerformed() : 숫자키 다음 연산키를 눌러야지만 Arraylist에 숫자가 저장된다.
+  - 맨 처음 연산키가 입력되면 아무것도 저장되지 않는다.
+- addParentheses() : 계산식에 곱셈 또는 나눗셈이 포함된 경우 createParentheses() 실행
+- createParentheses() : 괄호 자동 삽입
+- chageNotation() : 중위 표기법을 후위 표기법으로 변경
+- calculate() : 연산자에 따라 연산한 후 중간 계산 값이 있는 경우 temp에 저장
+<img src="https://user-images.githubusercontent.com/47530310/58395263-45ffb300-8082-11e9-9f05-b07222ffe7e0.PNG" alt="계산기실행이미지" width="50%">
 
-- 미구현 기능
-  - 연산자가 2개 이상인 경우 계산 기능
-  - 우선순위가 동일한 경우 계산 기능

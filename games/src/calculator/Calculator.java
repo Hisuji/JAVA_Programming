@@ -2,6 +2,7 @@ package calculator;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
@@ -14,8 +15,7 @@ public class Calculator extends JFrame {
 	private static ArrayList<String> infix = new ArrayList<String>();
 	private static Stack<String> operator = new Stack<String>();
 	private static ArrayList<String> postfix = new ArrayList<String>();
-	private static Stack<Integer> calculation = new Stack<Integer>();
-	
+	private static Stack<Float> calculation = new Stack<Float>();
 
 	public static void createCal() {
 		cal = new JFrame("계산기");
@@ -73,7 +73,7 @@ public class Calculator extends JFrame {
 						infix.add(inputKey);
 					} else if ("ｃ".equals(inputKey)) {
 						infix.clear();
-						System.out.println("삭제");
+						System.out.println("삭제 완료");
 					} else {
 						// 연산자가 2개 이상일 때만 곱셈, 나눗셈 괄호 적용
 						int cnt = 0;
@@ -84,14 +84,16 @@ public class Calculator extends JFrame {
 						}
 
 						System.out.println("중위 : " + infix);
+
 						if (cnt >= 2) {
 							addParentheses();
 						}
+
 						chageNotation();
-						
+
 						System.out.println("후위 : " + postfix);
-						
-						//공백 제거
+
+						// 공백 제거
 						for (int i = 0; i < postfix.size(); i++) {
 							if (postfix.get(i).isEmpty()) {
 								postfix.remove(i);
@@ -101,7 +103,6 @@ public class Calculator extends JFrame {
 
 						System.out.println("공백 제거 후위: " + postfix);
 
-						// 계산식
 						calculate();
 					}
 				}
@@ -109,45 +110,49 @@ public class Calculator extends JFrame {
 		}
 
 		public void calculate() {
-			int x;
-			int y;
-			int temp;
+			float num1;
+			float num2;
+			float temp;
+
 			for (int i = 0; i < postfix.size(); i++) {
 				if (isNumber(postfix.get(i))) {
-					calculation.push(Integer.parseInt(postfix.get(i)));
+					calculation.push(Float.parseFloat(postfix.get(i)));
 				} else {
-					x = calculation.pop();
-					y = calculation.pop();
-					
+					num1 = calculation.pop();
+					num2 = calculation.pop();
+
 					switch (postfix.get(i)) {
 					case "＋":
-						temp = y + x;
+						temp = num2 + num1;
 						calculation.push(temp);
+						System.out.println(">>>" + calculation);
 						break;
-						
+
 					case "ⅹ":
-						temp = y * x;
+						temp = num2 * num1;
 						calculation.push(temp);
+						System.out.println(">>>" + calculation);
 						break;
-					
+
 					case "÷":
-						temp = y / x;
+						temp = num2 / num1;
 						calculation.push(temp);
+						System.out.println(">>>" + calculation);
 						break;
-						
+
 					case "－":
-						temp = y - x;
+						temp = num2 - num1;
 						calculation.push(temp);
+						System.out.println(">>>" + calculation);
 						break;
-					}
-					
-					if (calculation.size() == 1) {
-						textField.setText(Integer.toString(calculation.pop()));
 					}
 				}
-				
 			}
-			
+
+			if (calculation.size() == 1) {
+				DecimalFormat format = new DecimalFormat("#.##");
+				textField.setText(format.format(calculation.pop()));
+			}
 		}
 
 		public void chageNotation() {
@@ -156,31 +161,26 @@ public class Calculator extends JFrame {
 					postfix.add(i, infix.get(i));
 				} else {
 					if (!"(".equals(infix.get(i)) && !")".equals(infix.get(i))) {
-						// 연산자 + 괄호 연산
 						operator.push(infix.get(i));
-						System.out.println("stack : " + operator);
 						postfix.add(i, "");
 					} else if ("(".equals(infix.get(i))) {
 						postfix.add(i, "");
 					} else if (")".equals(infix.get(i))) {
 						postfix.add(i, "");
-						while (operator.size() != 0) {
-							postfix.add(i + 1, operator.pop());
-							i++;
-						}
+						postfix.set(i, operator.pop());
 					}
 				}
 			}
 
 			if (operator.size() != 0) {
-				//연산자 1개인 경우
-				if (operator.size() == 1) {
-					postfix.add(postfix.size(), operator.pop());
+				postfix.add(postfix.size(), "");
+
+				for (int i = 0; i <= operator.size(); i++) {
+					postfix.set(postfix.lastIndexOf(""), operator.pop());
 				}
-				//우선순위 동일한 연산
 			}
 		}
-		
+
 		public void addParentheses() {
 			if (infix.contains("ⅹ") && !infix.contains("÷")) {
 				createParentheses("ⅹ");
