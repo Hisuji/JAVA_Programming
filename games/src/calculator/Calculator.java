@@ -3,21 +3,18 @@ package calculator;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Stack;
-
+import java.util.*;
 import javax.swing.*;
 
 public class Calculator extends JFrame {
-	private static JFrame cal;
+	private JFrame cal;
 	private static JTextField textField;
 	private static ArrayList<String> infix = new ArrayList<String>();
 	private static Stack<String> operator = new Stack<String>();
 	private static ArrayList<String> postfix = new ArrayList<String>();
 	private static Stack<Float> calculation = new Stack<Float>();
 
-	public static void createCal() {
+	public void createCal() {
 		cal = new JFrame("계산기");
 
 		JPanel panelView = new JPanel();
@@ -192,7 +189,7 @@ public class Calculator extends JFrame {
 
 		public boolean isNumber(String s) {
 			try {
-				int parseInt = Integer.parseInt(s);
+				Integer.parseInt(s);
 			} catch (NumberFormatException e) {
 				return false;
 			}
@@ -211,6 +208,7 @@ public class Calculator extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		createCal();
+		Calculator calculator = new Calculator();
+		calculator.createCal();
 	}
 }
